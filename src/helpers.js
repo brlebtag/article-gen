@@ -45,3 +45,57 @@ export function quebrarLinha(str) {
         return [];
     return arr;
 }
+
+export function ajustarAcentuacao(str) {
+    const acentos = {
+        '\'a': 'á',
+        '\'e': 'é',
+        '\'i': 'í',
+        '\'o': 'ó',
+        '\'u': 'ú',
+        '\´a': 'á',
+        '\´e': 'é',
+        '\´i': 'í',
+        '\´o': 'ó',
+        '\´u': 'ú',
+        '\~a': 'ã',
+        '\~e': 'ẽ',
+        '\~i': 'ĩ',
+        '\~o': 'õ',
+        '\~u': 'ũ',
+        '\˜a': 'ã',
+        '\˜e': 'ẽ',
+        '\˜i': 'ĩ',
+        '\˜o': 'õ',
+        '\˜u': 'ũ',
+        '\`a': 'à',
+        '\`e': 'è',
+        '\`i': 'ì',
+        '\`o': 'ò',
+        '\`u': 'ù',
+        '\¨a': 'ä',
+        '\¨e': 'ë',
+        '\¨i': 'ï',
+        '\¨o': 'ö',
+        '\¨u': 'ü',
+        '\^a': 'â',
+        '\^e': 'ê',
+        '\^i': 'î',
+        '\^o': 'ô',
+        '\^u': 'û',
+        '↵': 'ff',
+        '\¸c': 'ç',
+        '\ˆa': 'â',
+        '\ˆe': 'ê',
+        '\ˆi': 'î',
+        '\ˆo': 'ô',
+        '\ˆu': 'û',
+    };
+
+    for(var acento in acentos) {
+        const valor = acentos[acento];
+        str = str.replace(new RegExp(acento, 'g'), valor);
+    }
+
+    return str;
+}
