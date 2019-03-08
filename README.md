@@ -32,4 +32,6 @@ Ele vai iniciar o site automaticamente na porta 3000 se estiver disponivel.
 
 5. Instale o plugin Allow CORS: Access-Control-Allow-Origin para o chrome.
 
-É preciso instalar o plugin Allow CORS: Access-Control-Allow-Origin para usar a função de tradução automatica.
+É preciso instalar e ativar o plugin Allow CORS: Access-Control-Allow-Origin para usar a função de tradução automatica.
+
+[Você pode baixa-lo aqui](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf)
