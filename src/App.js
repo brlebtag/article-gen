@@ -349,7 +349,7 @@ class App extends Component {
     if (keywords.length > 0) {
       xml += `      <keywords locale="${idioma[EN_US]}">\n`;
       xml += keywords.map(key => {
-        return `          <keyword>${key}</keyword>`;
+        return `        <keyword>${key}</keyword>`;
       }).join("\n");
       xml += `\n      </keywords>\n`;
     }
@@ -359,25 +359,29 @@ class App extends Component {
     if (palavrasChaves.length > 0) {
       xml += `      <keywords locale="${idioma[PT_BR]}">\n`;
       xml += palavrasChaves.map(key => {
-        return `          <keyword>${key}</keyword>`;
+        return `        <keyword>${key}</keyword>`;
       }).join("\n");
       xml += `\n      </keywords>\n`;
     }  
 
-    xml += autores.map((autor, i) => {
-      try {
-        let n = nome(autor[0]);
-        return `      <author primary_contact="true" include_in_browse="true" user_group_ref="Author">
-        <firstname>${n.firstName}</firstname>
-        <lastname>${n.lastName}</lastname>
-        <affiliation locale="pt_BR">${autor[1]}</affiliation>
-        <affiliation locale="en_US">${authors[i][1]}</affiliation>
-        <email>${autor[2] || 'nomail@mail.com'}</email>
-      </author>`;
-      } catch(e) {
-        return '';
-      }
-    }).join("\n");  
+    if (autores.length > 0) {
+      xml += `      <authors xsi:schemaLocation="http://pkp.sfu.ca native.xsd">\n`;
+      xml += autores.map((autor, i) => {
+        try {
+          let n = nome(autor[0]);
+          return `        <author primary_contact="true" include_in_browse="true" user_group_ref="Author">
+          <firstname>${n.firstName}</firstname>
+          <lastname>${n.lastName}</lastname>
+          <affiliation locale="pt_BR">${autor[1]}</affiliation>
+          <affiliation locale="en_US">${authors[i][1]}</affiliation>
+          <email>${autor[2] || 'nomail@mail.com'}</email>
+        </author>`;
+        } catch(e) {
+          return '';
+        }
+      }).join("\n");
+      xml += `\n      </authors>`;
+    }  
 
     xml += `\n      <article_galley approved="false" xsi:schemaLocation="http://pkp.sfu.ca native.xsd">
         <id type="internal" advice="ignore">4071</id>
@@ -480,7 +484,7 @@ class App extends Component {
                 <Button variant="success" onClick={this.gerarXML.bind(this)}>Gerar</Button>
               </div>
               <div className="float-right">
-                <Button variant="danger" onClick={this.novo.bind(this)}>Novo</Button>
+                <Button variant="danger" onClick={this.novo.bind(this)}>Proximo</Button>
               </div>
             </Col>
           </Row>
@@ -574,7 +578,10 @@ class App extends Component {
                         </Button>
                         <Button type="button" variant="light" title="Formatar" onClick={this.formatar.bind(this, 'titulo')}>
                           <i class="fas fa-font"></i>
-                        </Button></Form.Label>
+                        </Button><Button type="button" variant="light" title="Ajustar Acentuação" onClick={this.acentos.bind(this, 'titulo')}>
+                          <i class="fas fa-pen-fancy"></i>
+                        </Button>
+                      </Form.Label>
                       <Form.Control as="textarea" rows="2"
                         value={titulo}
                         onChange={this.setTargetValue.bind(this, 'titulo')} />
@@ -588,7 +595,10 @@ class App extends Component {
                         </Button>
                         <Button type="button" variant="light" title="Formatar" onClick={this.formatar.bind(this, 'title')}>
                           <i class="fas fa-font"></i>
-                        </Button></Form.Label>
+                        </Button><Button type="button" variant="light" title="Ajustar Acentuação" onClick={this.acentos.bind(this, 'title')}>
+                          <i class="fas fa-pen-fancy"></i>
+                        </Button>
+                      </Form.Label>
                       <Form.Control as="textarea" rows="2"
                         value={title}
                         onChange={this.setTargetValue.bind(this, 'title')} />
@@ -610,6 +620,8 @@ class App extends Component {
                     <Form.Group controlId="formpalavrasChaves">
                         <Form.Label>Palavras-chaves: <Button title="Traduzir para Inglês" type="button" variant="light" onClick={this.processaPalavrasChaves.bind(this, PT_BR)}>
                             <i className="fas fa-language"></i>
+                          </Button><Button type="button" variant="light" title="Ajustar Acentuação" onClick={this.acentos.bind(this, 'palavrasChaves')}>
+                            <i class="fas fa-pen-fancy"></i>
                           </Button>
                         </Form.Label>
                         <Form.Control as="textarea" rows="6"
@@ -622,6 +634,8 @@ class App extends Component {
                       <Form.Group controlId="formkeywords">
                         <Form.Label>Keywords: <Button title="Traduzir para Português" type="button" variant="light" onClick={this.processaPalavrasChaves.bind(this, EN_US)}>
                             <i className="fas fa-language"></i>
+                          </Button><Button type="button" variant="light" title="Ajustar Acentuação" onClick={this.acentos.bind(this, 'keywords')}>
+                            <i class="fas fa-pen-fancy"></i>
                           </Button>
                         </Form.Label>
                         <Form.Control as="textarea" rows="6"
@@ -646,6 +660,8 @@ class App extends Component {
                     <Form.Group controlId="formAutores">
                       <Form.Label>Autores: <Button type="button" title="Traduzir para Inglês" variant="light" onClick={this.processaAutores.bind(this, PT_BR)}>
                           <i className="fas fa-language"></i>
+                        </Button><Button type="button" variant="light" title="Ajustar Acentuação" onClick={this.acentos.bind(this, 'autores')}>
+                        <i class="fas fa-pen-fancy"></i>
                         </Button>
                       </Form.Label>
                       <Form.Control as="textarea" rows="8" value={autores}
@@ -661,6 +677,8 @@ class App extends Component {
                     <Form.Group controlId="formAuthors">
                       <Form.Label>Authors: <Button type="button" title="Traduzir para Português" variant="light" onClick={this.processaAutores.bind(this, EN_US)}>
                           <i className="fas fa-language"></i>
+                        </Button><Button type="button" variant="light" title="Ajustar Acentuação" onClick={this.acentos.bind(this, 'authors')}>
+                        <i class="fas fa-pen-fancy"></i>
                         </Button>
                       </Form.Label>
                       <Form.Control as="textarea" rows="8" value={authors}

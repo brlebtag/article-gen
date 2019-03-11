@@ -9,7 +9,7 @@ export function traduzir(words) {
 }
 
 export function fixLinha(str) {
-    return str.split(/[ \n\t]/g).map(s => s.replace(/ /g, '')).join(' ');
+    return str.trim().split(/[ \n\t]/g).map(s => s.replace(/ /g, '')).join(' ');
 }
 
 export function quebrarChaves(str) {
