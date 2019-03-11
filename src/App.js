@@ -121,8 +121,8 @@ class App extends Component {
     }));
   }
 
-  processaTitulo() {
-    let { lingua = LANG_DEFAULT, title = '', titulo = '' } = this.state;
+  processaTitulo(lingua = LANG_DEFAULT) {
+    let { title = '', titulo = '' } = this.state;
 
     switch(lingua) {
       case PT_BR: {
@@ -158,8 +158,8 @@ class App extends Component {
     }
   }
 
-  processaPalavrasChaves() {
-    let { lingua = LANG_DEFAULT, keywords = '', palavrasChaves = '' } = this.state;
+  processaPalavrasChaves(lingua = LANG_DEFAULT) {
+    let { keywords = '', palavrasChaves = '' } = this.state;
 
     switch(lingua) {
       case PT_BR: {
@@ -207,8 +207,8 @@ class App extends Component {
     }
   }
 
-  processaAutores() {
-    let { lingua = LANG_DEFAULT, authors = '', autores = '' } = this.state;
+  processaAutores(lingua = LANG_DEFAULT) {
+    let { authors = '', autores = '' } = this.state;
 
     switch(lingua) {
       case PT_BR: {
@@ -272,8 +272,8 @@ class App extends Component {
     }
   }
 
-  processaResumo() {
-    let { lingua = LANG_DEFAULT, resumo = '', abstract = '' } = this.state;
+  processaResumo(lingua = LANG_DEFAULT) {
+    let { resumo = '', abstract = '' } = this.state;
 
     switch(lingua) {
       case PT_BR: {
@@ -561,9 +561,6 @@ class App extends Component {
                       </Row>
                     </Form.Group>
                     <h2 className="display-4">Artigo
-                      <Button type="button" title="Traduzir" variant="light" onClick={this.processaTitulo.bind(this)}>
-                        <i className="fas fa-language"></i>
-                      </Button>
                       <Button type="button" title="Copiar de 'Titulo' para 'Title'" variant="light" onClick={this.copiar.bind(this, 'titulo', 'title')}>
                       <i class="fas fa-arrow-down"></i>
                       </Button>
@@ -572,7 +569,10 @@ class App extends Component {
                       </Button>
                     </h2>
                     <Form.Group controlId="formTitulo">
-                      <Form.Label>Titulo: <Button type="button" variant="light" title="Formatar" onClick={this.formatar.bind(this, 'titulo')}>
+                      <Form.Label>Titulo: <Button title="Traduzir para Inglês" type="button" variant="light" onClick={this.processaTitulo.bind(this, PT_BR)}>
+                          <i className="fas fa-language"></i>
+                        </Button>
+                        <Button type="button" variant="light" title="Formatar" onClick={this.formatar.bind(this, 'titulo')}>
                           <i class="fas fa-font"></i>
                         </Button></Form.Label>
                       <Form.Control as="textarea" rows="2"
@@ -583,7 +583,10 @@ class App extends Component {
                         </Form.Text>
                     </Form.Group>
                     <Form.Group controlId="formTitle">
-                      <Form.Label>Title: <Button type="button" variant="light" title="Formatar" onClick={this.formatar.bind(this, 'title')}>
+                      <Form.Label>Title: <Button title="Traduzir para Português" type="button" variant="light" onClick={this.processaTitulo.bind(this, EN_US)}>
+                          <i className="fas fa-language"></i>
+                        </Button>
+                        <Button type="button" variant="light" title="Formatar" onClick={this.formatar.bind(this, 'title')}>
                           <i class="fas fa-font"></i>
                         </Button></Form.Label>
                       <Form.Control as="textarea" rows="2"
@@ -597,11 +600,7 @@ class App extends Component {
                 </Tab>
                 <Tab eventKey="palavrasChaves" title="Palavras Chaves">
                   <Form className="mb-4">
-                  <h2 className="display-4">Chaves
-                    <Button type="button" title="Traduzir" variant="light" onClick={this.processaPalavrasChaves.bind(this)}>
-                      <i className="fas fa-language"></i>
-                    </Button>
-                    <Button type="button" title="Copiar de 'Palavras-chaves' para 'Keywords'" variant="light" onClick={this.copiar.bind(this, 'palavrasChaves', 'keywords')}>
+                  <h2 className="display-4">Chaves <Button type="button" title="Copiar de 'Palavras-chaves' para 'Keywords'" variant="light" onClick={this.copiar.bind(this, 'palavrasChaves', 'keywords')}>
                       <i class="fas fa-arrow-down"></i>
                     </Button>
                     <Button type="button" title="Copiar de 'Keywords' para 'Palavras-chaves'" variant="light" onClick={this.copiar.bind(this, 'keywords', 'palavrasChaves')}>
@@ -609,7 +608,10 @@ class App extends Component {
                     </Button>
                   </h2>
                     <Form.Group controlId="formpalavrasChaves">
-                        <Form.Label>Palavras-chaves: </Form.Label>
+                        <Form.Label>Palavras-chaves: <Button title="Traduzir para Inglês" type="button" variant="light" onClick={this.processaPalavrasChaves.bind(this, PT_BR)}>
+                            <i className="fas fa-language"></i>
+                          </Button>
+                        </Form.Label>
                         <Form.Control as="textarea" rows="6"
                           value={palavrasChaves}
                           onChange={this.setTargetValue.bind(this, 'palavrasChaves')} />
@@ -618,7 +620,10 @@ class App extends Component {
                           </Form.Text>
                       </Form.Group>
                       <Form.Group controlId="formkeywords">
-                        <Form.Label>Keywords: </Form.Label>
+                        <Form.Label>Keywords: <Button title="Traduzir para Português" type="button" variant="light" onClick={this.processaPalavrasChaves.bind(this, EN_US)}>
+                            <i className="fas fa-language"></i>
+                          </Button>
+                        </Form.Label>
                         <Form.Control as="textarea" rows="6"
                           value={keywords}
                           onChange={this.setTargetValue.bind(this, 'keywords')} />
@@ -631,9 +636,6 @@ class App extends Component {
                 <Tab eventKey="autores" title="Autores">
                   <Form className="mt-4">
                   <h2 className="display-4">Autores
-                    <Button type="button" title="Traduzir" variant="light" onClick={this.processaAutores.bind(this)}>
-                      <i className="fas fa-language"></i>
-                    </Button>
                     <Button type="button" title="Copiar de 'Autores' para 'Authors'" variant="light" onClick={this.copiar.bind(this, 'autores', 'authors')}>
                       <i class="fas fa-arrow-down"></i>
                     </Button>
@@ -642,7 +644,10 @@ class App extends Component {
                     </Button>
                   </h2>
                     <Form.Group controlId="formAutores">
-                      <Form.Label>Autores:</Form.Label>
+                      <Form.Label>Autores: <Button type="button" title="Traduzir para Inglês" variant="light" onClick={this.processaAutores.bind(this, PT_BR)}>
+                          <i className="fas fa-language"></i>
+                        </Button>
+                      </Form.Label>
                       <Form.Control as="textarea" rows="8" value={autores}
                         onChange={this.setTargetValue.bind(this, 'autores')} />
                       <Form.Text className="text-muted">
@@ -654,7 +659,10 @@ class App extends Component {
                       </Form.Text>
                     </Form.Group>
                     <Form.Group controlId="formAuthors">
-                      <Form.Label>Authors: </Form.Label>
+                      <Form.Label>Authors: <Button type="button" title="Traduzir para Português" variant="light" onClick={this.processaAutores.bind(this, EN_US)}>
+                          <i className="fas fa-language"></i>
+                        </Button>
+                      </Form.Label>
                       <Form.Control as="textarea" rows="8" value={authors}
                         onChange={this.setTargetValue.bind(this, 'authors')} />
                       <Form.Text className="text-muted">
@@ -666,9 +674,6 @@ class App extends Component {
                 <Tab eventKey="resumo" title="Resumo">
                   <Form className="mt-4">
                   <h2 className="display-4">Resumo
-                    <Button type="button" title="Traduzir" variant="light" onClick={this.processaResumo.bind(this)}>
-                      <i className="fas fa-language"></i>
-                    </Button>
                     <Button type="button" title="Copiar de 'Resumo' para 'Abstract'" variant="light" onClick={this.copiar.bind(this, 'resumo', 'abstract')}>
                       <i class="fas fa-arrow-down"></i>
                     </Button>
@@ -677,11 +682,15 @@ class App extends Component {
                     </Button>
                   </h2>
                     <Form.Group controlId="formResumo">
-                      <Form.Label>Resumo: <Button type="button" variant="light" title="Formatar" onClick={this.formatar.bind(this, 'resumo')}>
-                          <i class="fas fa-font"></i>
-                        </Button></Form.Label> <Button type="button" variant="light" title="Ajustar Acentuação" onClick={this.acentos.bind(this, 'resumo')}>
-                        <i class="fas fa-pen-fancy"></i>
+                      <Form.Label>Resumo: <Button type="button" title="Traduzir para Inglês" variant="light" onClick={this.processaResumo.bind(this, PT_BR)}>
+                          <i className="fas fa-language"></i>
                         </Button>
+                        <Button type="button" variant="light" title="Formatar" onClick={this.formatar.bind(this, 'resumo')}>
+                          <i class="fas fa-font"></i>
+                        </Button><Button type="button" variant="light" title="Ajustar Acentuação" onClick={this.acentos.bind(this, 'resumo')}>
+                          <i class="fas fa-pen-fancy"></i>
+                        </Button>
+                      </Form.Label> 
                       <Form.Control as="textarea" rows="6" value={resumo}
                         onChange={this.setTargetValue.bind(this, 'resumo')} />
                         <Form.Text className="text-muted">
@@ -689,11 +698,15 @@ class App extends Component {
                         </Form.Text>
                     </Form.Group>
                     <Form.Group controlId="formAbstract">
-                      <Form.Label>Abstract: <Button type="button" variant="light" title="Formatar" onClick={this.formatar.bind(this, 'abstract')}>
+                      <Form.Label>Abstract: <Button type="button" title="Traduzir para Português" variant="light" onClick={this.processaResumo.bind(this, EN_US)}>
+                          <i className="fas fa-language"></i>
+                        </Button>
+                        <Button type="button" variant="light" title="Formatar" onClick={this.formatar.bind(this, 'abstract')}>
                           <i class="fas fa-font"></i>
                         </Button><Button type="button" variant="light" title="Ajustar Acentuação" onClick={this.acentos.bind(this, 'abstract')}>
                         <i class="fas fa-pen-fancy"></i>
-                        </Button></Form.Label>
+                        </Button>
+                      </Form.Label>
                       <Form.Control as="textarea" rows="6" value={abstract}
                         onChange={this.setTargetValue.bind(this, 'abstract')} />
                         <Form.Text className="text-muted">
