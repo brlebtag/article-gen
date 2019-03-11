@@ -619,7 +619,7 @@ class App extends Component {
                     </Button>
                   </h2>
                     <Form.Group controlId="formpalavrasChaves">
-                        <Form.Label>Palavras-chaves: <Button title="Traduzir para Inglês" type="button" variant="light" onClick={this.processaPalavrasChaves.bind(this, PT_BR)}>
+                        <Form.Label>Palavras-chaves: <Button title="Formata e traduzir para Inglês" type="button" variant="light" onClick={this.processaPalavrasChaves.bind(this, PT_BR)}>
                             <i className="fas fa-language"></i>
                           </Button><Button type="button" variant="light" title="Ajustar Acentuação" onClick={this.acentos.bind(this, 'palavrasChaves')}>
                             <i class="fas fa-pen-fancy"></i>
@@ -633,7 +633,7 @@ class App extends Component {
                           </Form.Text>
                       </Form.Group>
                       <Form.Group controlId="formkeywords">
-                        <Form.Label>Keywords: <Button title="Traduzir para Português" type="button" variant="light" onClick={this.processaPalavrasChaves.bind(this, EN_US)}>
+                        <Form.Label>Keywords: <Button title="Formata e traduzir para Português" type="button" variant="light" onClick={this.processaPalavrasChaves.bind(this, EN_US)}>
                             <i className="fas fa-language"></i>
                           </Button><Button type="button" variant="light" title="Ajustar Acentuação" onClick={this.acentos.bind(this, 'keywords')}>
                             <i class="fas fa-pen-fancy"></i>
