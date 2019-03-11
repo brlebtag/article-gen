@@ -390,7 +390,8 @@ class App extends Component {
         <remote src="https://doi.org/10.1145/3229345.3229346" />
       </article_galley>
       <pages>${pagInicio} - ${pagFim}</pages>
-    </article>`;
+    </article>
+    <!--== ARTIGO ===============================================================================================================================-->\r`;
 
     atualizar(this, {
       xml: {$set: xml},
