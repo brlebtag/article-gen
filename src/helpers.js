@@ -1,5 +1,5 @@
 import translate from '@k3rn31p4nic/google-translate-api';
-import { trimEnd } from 'lodash';
+import { trimEnd, trim } from 'lodash';
 
 export function traduzir(words) {
     return Promise.all(words.map(w => translate.call(this, w.text, {
@@ -13,7 +13,7 @@ export function fixLinha(str) {
 }
 
 export function quebrarChaves(str) {
-    return str.split(/[\n\t\;\,]/g).map(s => trimEnd(s.trim(), '.'));
+    return str.split(/[\n\t\;\,\.]/g).map(s => trimEnd(s.trim(), '.'));
 }
 
 export function quebrarAutores(str) {
@@ -39,11 +39,7 @@ export function nome(str) {
 }
 
 export function quebrarLinha(str) {
-    let arr = str.split("\n");
-
-    if (arr.length == 0 || arr.some(el => el == ''))
-        return [];
-    return arr;
+    return str.split("\n").filter(s => s != '');
 }
 
 export function ajustarAcentuacao(str) {
@@ -54,50 +50,123 @@ export function ajustarAcentuacao(str) {
         '\'ı': 'í',
         '\'o': 'ó',
         '\'u': 'ú',
+        
+        '\'A': 'Á',
+        '\'E': 'É',
+        '\'I': 'Í',
+        '\'İ': 'Í',
+        '\'O': 'Ó',
+        '\'U': 'Ú',
+
         '\´a': 'á',
         '\´e': 'é',
         '\´i': 'í',
         '\´ı': 'í',
         '\´o': 'ó',
         '\´u': 'ú',
+
+        '\´A': 'Á',
+        '\´E': 'É',
+        '\´I': 'Í',
+        '\´İ': 'Í',
+        '\´O': 'Ó',
+        '\´U': 'Ú',
+
         '\~a': 'ã',
         '\~e': 'ẽ',
         '\~i': 'ĩ',
         '\~ı': 'ĩ',
         '\~o': 'õ',
         '\~u': 'ũ',
+
+        '\~A': 'Ã',
+        '\~E': 'Ẽ',
+        '\~I': 'Ĩ',
+        '\~İ': 'Ĩ',
+        '\~O': 'Õ',
+        '\~U': 'Ũ',
+
         '\˜a': 'ã',
         '\˜e': 'ẽ',
         '\˜i': 'ĩ',
         '\˜ı': 'ĩ',
         '\˜o': 'õ',
         '\˜u': 'ũ',
+
+        '\˜A': 'Ã',
+        '\˜E': 'Ẽ',
+        '\˜I': 'Ĩ',
+        '\˜İ': 'Ĩ',
+        '\˜O': 'Õ',
+        '\˜U': 'Ũ',
+
         '\`a': 'à',
         '\`e': 'è',
         '\`i': 'ì',
         '\`ı': 'ì',
         '\`o': 'ò',
         '\`u': 'ù',
+
+        '\`A': 'À',
+        '\`E': 'È',
+        '\`I': 'Ì',
+        '\`İ': 'Ì',
+        '\`O': 'Ò',
+        '\`U': 'Ù',
+
         '\¨a': 'ä',
         '\¨e': 'ë',
         '\¨i': 'ï',
         '\¨ı': 'ï',
         '\¨o': 'ö',
         '\¨u': 'ü',
+
+        '\¨A': 'Ä',
+        '\¨E': 'Ë',
+        '\¨I': 'Ï',
+        '\¨İ': 'Ï',
+        '\¨O': 'Ö',
+        '\¨U': 'Ü',
+
         '\^a': 'â',
         '\^e': 'ê',
         '\^i': 'î',
         '\^ı': 'î',
         '\^o': 'ô',
         '\^u': 'û',
-        '↵': 'ff',
-        '\¸c': 'ç',
+
+        '\^A': 'Â',
+        '\^E': 'Ê',
+        '\^I': 'Î',
+        '\^İ': 'Î',
+        '\^O': 'Ô',
+        '\^U': 'Û',
+
         '\ˆa': 'â',
         '\ˆe': 'ê',
         '\ˆi': 'î',
         '\ˆı': 'î',
         '\ˆo': 'ô',
         '\ˆu': 'û',
+
+        '\ˆA': 'Â',
+        '\ˆE': 'Ê',
+        '\ˆI': 'Î',
+        '\ˆİ': 'Î',
+        '\ˆO': 'Ô',
+        '\ˆU': 'Û',
+
+        '\´A': 'Á',
+        '\´E': 'É',
+        '\´I': 'Í',
+        '\ˆİ': 'Í',
+        '\´O': 'Ó',
+        '\´U': 'Ú',
+        
+        '\¸c': 'ç',
+        '\¸C': 'Ç',
+
+        '↵': 'ff',
     };
 
     for(var acento in acentos) {
