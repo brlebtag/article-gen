@@ -540,7 +540,7 @@ class App extends Component {
                             value={pagFim}
                             onChange={this.setTargetValue.bind(this, 'pagFim')} />
                             <Form.Text className="text-muted">
-                            Total: {parseInt(pagFim) - parseInt(pagInicio)}
+                            Total: {parseInt(pagFim) - parseInt(pagInicio) + 1}
                           </Form.Text>
                         </Form.Group>
                       </Col>

@@ -2,10 +2,30 @@ import translate from '@k3rn31p4nic/google-translate-api';
 import { trimEnd, trim } from 'lodash';
 
 export function traduzir(words) {
-    return Promise.all(words.map(w => translate.call(this, w.text, {
-        to: w.to,
-        from: w.from,
-    })));
+    return Promise.all(words.map(w => {
+        const word = sessionStorage[w.text];
+
+        if (word) {
+            return Promise.resolve(null);
+        }
+
+        sessionStorage[w.text] = null;
+
+        return translate.call(this, w.text, {
+            to: w.to,
+            from: w.from,
+        })
+    })).then(results => {
+        results.forEach((r,i) => {
+            if (r != null) {
+                sessionStorage[words[i].text] = r.text;
+            }
+        });
+
+        return Promise.resolve(words.map(w => {
+            return {text: sessionStorage[w.text]};
+        }));
+    });
 }
 
 export function fixLinha(str) {
