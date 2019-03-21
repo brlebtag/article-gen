@@ -187,7 +187,11 @@ export function ajustarAcentuacao(str) {
         '\¸C': 'Ç',
 
         '↵': 'ff',
-        '\\&': '\&\#038;'
+        '\\&': '\&\#038;',
+        '\“': '\"',
+        '\”': '\"',
+        '\´s': '\'s',
+        '\´S': '\'S',
     };
 
     for(var acento in acentos) {
@@ -195,5 +199,7 @@ export function ajustarAcentuacao(str) {
         str = str.replace(new RegExp(acento, 'g'), valor);
     }
 
-    return str;
+    return str.replace(/\w- \w/g, (val) => {
+        return val.replace('- ', '');
+    });
 }

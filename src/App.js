@@ -484,10 +484,11 @@ class App extends Component {
           <Row>
             <Col className="mb-4 clearfix">
               <div className="float-left">
-                <Button variant="success" onClick={this.gerarXML.bind(this)}>Gerar</Button>
+                <Button title="Gerar XML" variant="success" onClick={this.gerarXML.bind(this)}>Gerar</Button>
               </div>
               <div className="float-right">
-                <Button variant="danger" onClick={this.novo.bind(this)}>Proximo</Button>
+                <Button title="Limpar o cache das traduções" className="mr-2" variant="warning" onClick={() => sessionStorage.clear()}><i class="fas fa-trash-alt" /> <i className="fas fa-language"></i></Button>
+                <Button title="Ir para o próximo artigo." variant="danger" onClick={this.novo.bind(this)}>Proximo</Button>                
               </div>
             </Col>
           </Row>
@@ -589,7 +590,7 @@ class App extends Component {
                           <i class="fas fa-pen-fancy"></i>
                         </Button>
                       </Form.Label>
-                      <Form.Control as="textarea" rows="2"
+                      <Form.Control as="textarea" rows="4"
                         value={titulo}
                         onChange={this.setTargetValue.bind(this, 'titulo')} />
                         <Form.Text className="text-muted">
@@ -607,7 +608,7 @@ class App extends Component {
                           <i class="fas fa-pen-fancy"></i>
                         </Button>
                       </Form.Label>
-                      <Form.Control as="textarea" rows="2"
+                      <Form.Control as="textarea" rows="4"
                         value={title}
                         onChange={this.setTargetValue.bind(this, 'title')} />
                         <Form.Text className="text-muted">
